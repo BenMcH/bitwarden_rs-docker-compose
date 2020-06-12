@@ -1,0 +1,9 @@
+version: "3.6"
+services:
+  bitwarden:
+    image: bitwardenrs/server:1.15.1
+    restart: unless-stopped
+    volumes:
+        - ./bw_data:/data
+    ports: 
+        - 80:80
