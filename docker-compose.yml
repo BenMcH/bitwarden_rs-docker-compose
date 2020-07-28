@@ -1,9 +1,36 @@
 version: "3.6"
 services:
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    ports:
+      - "443:443"
+      - "80:80"
+    environment: 
+      - DHPARAM_GENERATION=false
+    labels: 
+      - com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - nginx-certs:/etc/nginx/certs
+      - nginx-vhost:/etc/nginx/vhost.d
+      - nginx-share:/usr/share/nginx/html
+  nginx-letsencrypt:
+    image: jrcs/letsencrypt-nginx-proxy-companion
+    depends_on:
+      - nginx-proxy
+    env_file: ./.env
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - nginx-certs:/etc/nginx/certs
+      - nginx-vhost:/etc/nginx/vhost.d
+      - nginx-share:/usr/share/nginx/html
   bitwarden:
-    image: bitwardenrs/server:1.15.1
+    image: bitwardenrs/server:1.16.1
+    env_file: ./.env
     restart: unless-stopped
     volumes:
         - ./bw_data:/data
-    ports: 
-        - 9080:80
+volumes:
+  nginx-certs:
+  nginx-vhost:
+  nginx-share:
