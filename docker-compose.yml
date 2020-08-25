@@ -25,7 +25,7 @@ services:
       - nginx-vhost:/etc/nginx/vhost.d
       - nginx-share:/usr/share/nginx/html
   bitwarden:
-    image: bitwardenrs/server:1.16.1
+    image: bitwardenrs/server:1.16.3
     env_file: ./.env
     restart: unless-stopped
     volumes:
