@@ -27,9 +27,10 @@ services:
       - nginx-vhost:/etc/nginx/vhost.d
       - nginx-share:/usr/share/nginx/html
   bitwarden:
-    image: bitwardenrs/server:1.16.1
     environment:
       - VIRTUAL_HOST=${VIRTUAL_HOST}
+    image: bitwardenrs/server:1.16.3
+    env_file: ./.env
     restart: unless-stopped
     volumes:
         - ./bw_data:/data
