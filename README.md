@@ -6,7 +6,7 @@ This micro-repo is used only as a host for an easily hostable Bitwarden_rs confi
 
 To setup this repo for deployment, clone it onto your docker server and enter the required values into the .env file.
 
-VIRTUAL_HOST and LETSENCRYPT_HOST should be the same values, your website domain name. These can be a comma separated list Ex: `passwords.example.com,password.example.com`
+VIRTUAL_HOST should be the same values, your website domain name. This can be a comma separated list Ex: `passwords.example.com,password.example.com`
 
 The DEFAULT_EMAIL env will allow letsencrypt to email you if your certificates are going to expire soon
 

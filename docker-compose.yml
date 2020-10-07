@@ -18,13 +18,17 @@ services:
     image: jrcs/letsencrypt-nginx-proxy-companion
     depends_on:
       - nginx-proxy
-    env_file: ./.env
+    environment:
+      - LETSENCRYPT_HOST=${VIRTUAL_HOST}
+      - DEFAULT_EMAIL=${DEFAULT_EMAIL}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - nginx-certs:/etc/nginx/certs
       - nginx-vhost:/etc/nginx/vhost.d
       - nginx-share:/usr/share/nginx/html
   bitwarden:
+    environment:
+      - VIRTUAL_HOST=${VIRTUAL_HOST}
     image: bitwardenrs/server:1.16.3
     env_file: ./.env
     restart: unless-stopped
