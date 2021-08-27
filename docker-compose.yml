@@ -9,6 +9,7 @@ services:
       - DHPARAM_GENERATION=false
     labels: 
       - com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy
+    restart: unless-stopped
     volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro
       - nginx-certs:/etc/nginx/certs
@@ -21,6 +22,7 @@ services:
     environment:
       - LETSENCRYPT_HOST=${VIRTUAL_HOST}
       - DEFAULT_EMAIL=${DEFAULT_EMAIL}
+    restart: unless-stopped
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - nginx-certs:/etc/nginx/certs
