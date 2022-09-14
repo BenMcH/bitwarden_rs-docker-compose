@@ -15,3 +15,8 @@ Running `docker-compose up -d` should be all that is required to host your own i
 ## Gotchas
 
 Due to the nginx proxy binding itself on ports 80 and 443, you cannot have another web server like Apache or Nginx running on the local machine.
+
+
+### Infrastructure model
+
+![Infrastructure model](.infragenie/infrastructure_model.png)
