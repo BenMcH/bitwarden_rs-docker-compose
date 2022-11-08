@@ -31,7 +31,7 @@ services:
   bitwarden:
     environment:
       - VIRTUAL_HOST=${VIRTUAL_HOST}
-    image: vaultwarden/server:1.23.0-alpine
+    image: vaultwarden/server:1.26.0-alpine
     env_file: ./.env
     restart: unless-stopped
     volumes:
